@@ -41,27 +41,30 @@ const LearnerSubmissions = [                // LearnerSubmissions -> array > obj
     }
 ]
 
-function restructureByNestedKey (arrOfObjs) {
+// const aKey = "submitted_at"
+// console.log(LearnerSubmissions[3].submission[aKey])
+
+function restructureByNestedKey (arrOfObjs, key) {
     restructuredArr = []
     uniqueValuesOfKey = []
 
     for (const objEntry of arrOfObjs) {
 
         newObj = {
-            learner_id: 0,
+            [key]: 0,
             subm_details: {
                 subm_ats: [],
                 scores: []
             }
         }
 
-        const isKeyUnique = uniqueValuesOfKey.indexOf(objEntry.learner_id)
+        const isKeyUnique = uniqueValuesOfKey.indexOf(objEntry[key])
 
         if (isKeyUnique === -1) {
 
-            uniqueValuesOfKey.push(objEntry.learner_id)
+            uniqueValuesOfKey.push(objEntry[key])
 
-            newObj.learner_id = objEntry.learner_id
+            newObj.learner_id = objEntry[key]
             newObj.subm_details.subm_ats.push(objEntry.submission.submitted_at)
             newObj.subm_details.scores.push(objEntry.submission.score)
 
@@ -77,6 +80,6 @@ function restructureByNestedKey (arrOfObjs) {
 
 const tryFunction = restructureByNestedKey(LearnerSubmissions)
 
-// console.log(restructureByNestedKey(LearnerSubmissions))          // <-- my VSCode hid the contents of subm_ats & scores arrays,
-// OR                                                               // showing in terminal as '[Array]', so I googled until I found JSON.stringify(x,y,z)
-// console.log(JSON.stringify(tryFunction, null, 6))                // (but I don't otherwise have a firm grasp of JSON methods yet)
+console.log(restructureByNestedKey(LearnerSubmissions, "learner_id"))       // <-- my VSCode hid the contents of subm_ats & scores arrays,
+// OR                                                                       // showing in terminal as '[Array]', so I googled until I found JSON.stringify(x,y,z)
+// console.log(JSON.stringify(tryFunction, null, 6))                        // (but I don't otherwise have a firm grasp of JSON methods yet)
