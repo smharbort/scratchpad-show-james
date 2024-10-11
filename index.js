@@ -41,9 +41,6 @@ const LearnerSubmissions = [                // LearnerSubmissions -> array > obj
     }
 ]
 
-// const aKey = "submitted_at"
-// console.log(LearnerSubmissions[3].submission[aKey])
-
 function restructureByNestedKey (arrOfObjs, key) {
     restructuredArr = []
     uniqueValuesOfKey = []
